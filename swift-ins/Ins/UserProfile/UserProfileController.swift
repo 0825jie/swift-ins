@@ -13,6 +13,8 @@ import Firebase
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
+    let headerId = "headerId"
+    let pics = ["pic1","pic2","pic3","pic4","pic5"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +28,42 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         setupContentView()
 
         setupLogOutButton()
+        
+        fetchPosts()
+    }
+    
+    // get posts and store them
+    var posts = [Post]()
+    fileprivate func fetchPosts() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            //print(snapshot.value)
+            
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            
+            dictionaries.forEach({ (key, value) in
+                //print("Key \(key), Value: \(value)")
+                
+                guard let dictionary = value as? [String: Any] else { return }
+                
+                let post = Post(dictionary: dictionary)
+                self.posts.append(post)
+            })
+            
+            self.collectionView?.reloadData()
+            
+        }) { (err) in
+            print("Failed to fetch posts:", err)
+        }
+        
     }
     
     fileprivate func setupContentView(){
-        collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
+        collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
     }
     
     //setup logout button on the right corner
@@ -67,13 +99,18 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     // loop out the section and cell view
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+//        return posts.count
+        return 5
     }
     
+    // set posts' pics get before into photo cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         
-        cell.backgroundColor = .purple
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
+        
+//        cell.post = posts[indexPath.item]
+        // hard code
+        cell.photoImageView.image = UIImage(named: pics[indexPath.item])
         
         return cell
     }
@@ -137,7 +174,7 @@ struct User {
     let profileImageUrl: String
     
     init(dictionary: [String: Any]) {
-        self.username = dictionary["username"] as? String ?? ""
+        self.username = dictionary["username"] as? String ?? "Default_Name"
         self.profileImageUrl = dictionary["profileImageUrl"]  as? String ?? ""
     }
 }

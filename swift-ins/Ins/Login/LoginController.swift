@@ -15,11 +15,13 @@ class LoginController: UIViewController {
     let logoContainerView: UIView = {
         let view = UIView()
         
-        let logoImageView = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white"))
+        let logoImageView = UIImageView(image: #imageLiteral(resourceName: "gethired"))
         logoImageView.contentMode = .scaleAspectFill
+       
         
         view.addSubview(logoImageView)
-        logoImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 50)
+        logoImageView.layer.cornerRadius = 15
+        logoImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 80)
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
@@ -106,7 +108,7 @@ class LoginController: UIViewController {
     // set bottom remind if no account
     let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        
+        //set attributes of the string
         let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
         
         attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)
@@ -140,6 +142,7 @@ class LoginController: UIViewController {
     
     fileprivate func setupLogoContainerView(){
         view.addSubview(logoContainerView)
+//        logoContainerView.layer.cornerRadius = 20
         logoContainerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
         navigationController?.isNavigationBarHidden = true
     }

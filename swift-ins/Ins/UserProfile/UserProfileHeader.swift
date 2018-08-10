@@ -14,7 +14,9 @@ class UserProfileHeader: UICollectionViewCell {
     var user: User? {
         didSet {
             setupProfileImage()
-            usernameLabel.text = user?.username
+            // hard code
+//            usernameLabel.text = user?.username
+            usernameLabel.text = "Default_name"
         }
     }
     
@@ -112,39 +114,16 @@ class UserProfileHeader: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        
+        // need to pay attention to order of setup
         setupBottomToolbar()
+        
+        setupProfilePhotoView()
         
         setupUserStatsView()
         
         setupPersonInfoView()
         
-       
-    }
-    
-    
-    // set profileImage , userName, editButton
-    fileprivate func setupPersonInfoView(){
-        addSubview(profileImageView)
-        profileImageView.anchor(top: topAnchor, left: self.leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
-        profileImageView.layer.cornerRadius = 80 / 2
-        profileImageView.clipsToBounds = true
-        
-        addSubview(usernameLabel)
-        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: gridButton.topAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
-        
-        addSubview(editProfileButton)
-        editProfileButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 34)
-    }
-    
-    
-    
-    fileprivate func setupUserStatsView() {
-        let stackView = UIStackView(arrangedSubviews: [postsLabel, followersLabel, followingLabel])
-        
-        stackView.distribution = .fillEqually
-        
-        addSubview(stackView)
-        stackView.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 50)
     }
     
     fileprivate func setupBottomToolbar() {
@@ -171,8 +150,49 @@ class UserProfileHeader: UICollectionViewCell {
         bottomDividerView.anchor(top: stackView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
     }
     
+    fileprivate func setupProfilePhotoView(){
+        addSubview(profileImageView)
+        profileImageView.anchor(top: topAnchor, left: self.leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
+        profileImageView.layer.cornerRadius = 80 / 2
+        profileImageView.clipsToBounds = true
+    }
+    
+    fileprivate func setupUserStatsView() {
+        let stackView = UIStackView(arrangedSubviews: [postsLabel, followersLabel, followingLabel])
+        
+        stackView.distribution = .fillEqually
+        
+        addSubview(stackView)
+        stackView.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 50)
+    }
+    
+    
+    
+    
+    // set profileImage , userName, editButton
+    fileprivate func setupPersonInfoView(){
+        addSubview(usernameLabel)
+        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: gridButton.topAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        
+        addSubview(editProfileButton)
+        editProfileButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 34)
+    }
+    
+    
+    
+    
     fileprivate func setupProfileImage() {
-        guard let profileImageUrl = user?.profileImageUrl else { return }
+        guard let profileImageUrl = user?.profileImageUrl
+            else {
+                // hard code
+                DispatchQueue.main.async {
+                     print("set view")
+                    self.profileImageView.image = UIImage(named: "hamb")
+                }
+            print("no url")
+            return
+                
+        }
         
         guard let url = URL(string: profileImageUrl) else { return }
         
