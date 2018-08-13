@@ -24,6 +24,10 @@
 		F2B66525211E004C0054AF40 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B66524211E004C0054AF40 /* PhotoSelectorHeader.swift */; };
 		F2B66528211E01D30054AF40 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B66527211E01D30054AF40 /* Post.swift */; };
 		F2B6652A211E0B4A0054AF40 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B66529211E0B4A0054AF40 /* UserProfilePhotoCell.swift */; };
+		F2F40A8221223356008932B5 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F40A8121223356008932B5 /* HomeController.swift */; };
+		F2F40A84212233B6008932B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F40A83212233B6008932B5 /* User.swift */; };
+		F2F40A8621223484008932B5 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F40A8521223484008932B5 /* HomePostCell.swift */; };
+		F2F40A88212236E5008932B5 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F40A87212236E5008932B5 /* CustomImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		F2B66524211E004C0054AF40 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 		F2B66527211E01D30054AF40 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F2B66529211E0B4A0054AF40 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
+		F2F40A8121223356008932B5 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		F2F40A83212233B6008932B5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F2F40A8521223484008932B5 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
+		F2F40A87212236E5008932B5 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				96A3B973211ABA7D00C53F53 /* Extension.swift */,
+				F2F40A87212236E5008932B5 /* CustomImageView.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -99,6 +108,7 @@
 		96F28735211AABBC0071887B /* Ins */ = {
 			isa = PBXGroup;
 			children = (
+				F2F40A802122323D008932B5 /* Home */,
 				F2B66526211E01BB0054AF40 /* Models */,
 				F2B6651F211DFCC00054AF40 /* AddPhoto */,
 				F24158F6211BC6CF00D509E4 /* UserProfile */,
@@ -157,8 +167,18 @@
 			isa = PBXGroup;
 			children = (
 				F2B66527211E01D30054AF40 /* Post.swift */,
+				F2F40A83212233B6008932B5 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F2F40A802122323D008932B5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F2F40A8121223356008932B5 /* HomeController.swift */,
+				F2F40A8521223484008932B5 /* HomePostCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,12 +306,16 @@
 				F24158FD211BCF6800D509E4 /* UserProfileHeader.swift in Sources */,
 				F24158F4211BC4BA00D509E4 /* MainTabBarController.swift in Sources */,
 				F24158FB211BCDBE00D509E4 /* UserProfileController.swift in Sources */,
+				F2F40A84212233B6008932B5 /* User.swift in Sources */,
+				F2F40A8221223356008932B5 /* HomeController.swift in Sources */,
 				96F28739211AABBC0071887B /* SignUpController.swift in Sources */,
+				F2F40A88212236E5008932B5 /* CustomImageView.swift in Sources */,
 				96F28737211AABBC0071887B /* AppDelegate.swift in Sources */,
 				F24158F8211BC6F800D509E4 /* LoginController.swift in Sources */,
 				F2B66525211E004C0054AF40 /* PhotoSelectorHeader.swift in Sources */,
 				F2B66521211DFF7F0054AF40 /* PhotoSelectorController.swift in Sources */,
 				F2B6652A211E0B4A0054AF40 /* UserProfilePhotoCell.swift in Sources */,
+				F2F40A8621223484008932B5 /* HomePostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
